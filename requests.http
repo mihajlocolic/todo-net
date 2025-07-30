@@ -1,0 +1,8 @@
+POST http://localhost:5025/todos
+content-type: application/json
+
+{
+    "Text": "Learn ASP.NET",
+    "CreatedDate": "7/30/25 09:54:00",
+    "IsComplete": false
+}
