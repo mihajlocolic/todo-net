@@ -18,4 +18,31 @@ app.MapPost("/todos", async (Todo todo, TodoDb db) =>
     return Results.Created($"/todos/{todo.Id}", todo);
 });
 
+app.MapPut("/todos/{id}", async (int id, Todo todo, TodoDb db) =>
+{
+    var tmpTodo = await db.Todos.FindAsync(id);
+
+    if (tmpTodo is null) return Results.NotFound();
+
+    tmpTodo.Text = todo.Text;
+    tmpTodo.IsComplete = todo.IsComplete;
+
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+
+});
+
+app.MapDelete("/todos/{id}", async (int id, TodoDb db) =>
+{
+    var todo = await db.Todos.FindAsync(id);
+
+    if (todo is null) return Results.NotFound();
+
+    db.Todos.Remove(todo);
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+});
+
 app.Run();

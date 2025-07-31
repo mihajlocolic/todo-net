@@ -1,8 +1,28 @@
+
+
+GET http://localhost:5025/todos/2
+
+###
 POST http://localhost:5025/todos
 content-type: application/json
 
 {
-    "Text": "Learn ASP.NET",
-    "CreatedDate": "7/30/25 09:54:00",
+    "Id": 2,
+    "Text": "Integrate HTML, CSS and JS",
+    "CreatedDate": "2025-07-31T07:36:00",
     "IsComplete": false
 }
+
+###
+
+PUT http://localhost:5025/todos/2
+content-type: application/json
+
+{
+    "Text": "Test",
+    "IsComplete": true
+}
+
+###
+
+DELETE http://localhost:5025/todos/2

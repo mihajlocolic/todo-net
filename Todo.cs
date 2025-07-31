@@ -2,7 +2,7 @@ public class Todo
 {
     public int Id { get; set; }
 
-    public required String Text { get; set; }
+    public required string Text { get; set; }
 
     public DateTime CreatedDate { get; set; }
 
