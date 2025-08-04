@@ -1,7 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
+
+// builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
+var connectionString = builder.Configuration.GetConnectionString("Todos") ?? "Data Source=Todos.db";
+builder.Services.AddSqlite<TodoDb>(connectionString);
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
